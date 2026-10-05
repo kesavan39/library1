@@ -1,0 +1,20 @@
+# Dependencies
+node_modules/
+
+# Production output
+dist/
+
+# Large raw dataset files (chunks in public/data/chunks are deployed instead)
+data/books_dataset.json
+data/*.csv
+data/archive*/
+
+# Logs & temp
+*.log
+.env
+.env.local
+
+# OS & Editor files
+.DS_Store
+.vscode/
+.idea/

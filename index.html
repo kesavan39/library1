@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>RTC Library Management</title>
+  <meta name="description" content="RTC Library Management System - Institutional Barcode & Catalog Management Engine.">
+  
+  <!-- Modern Google Typography -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;600;700&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="./src/style.css">
+</head>
+<body>
+  <!-- Ambient Gradient Orbs Background -->
+  <div class="ambient-glow glow-1"></div>
+  <div class="ambient-glow glow-2"></div>
+  <div class="ambient-glow glow-3"></div>
+
+  <div id="app" class="app-wrapper">
+    <!-- Navbar -->
+    <header class="navbar glass-nav">
+      <div class="nav-brand">
+        <div class="logo-icon-wrapper rathinam-logo-wrapper">
+          <img src="/rathinam-logo.svg" alt="Rathinam Logo" class="app-rathinam-logo">
+        </div>
+
+        <div class="brand-text">
+          <h1>RTC Library <span class="badge-tag-ai">Management</span></h1>
+          <p class="brand-sub">Institutional Barcode Cataloging & Library System</p>
+        </div>
+      </div>
+
+      <!-- Header Stats Dashboard -->
+      <div class="nav-stats">
+        <div class="stat-card">
+          <div class="stat-icon-bg emerald">📚</div>
+          <div class="stat-info">
+            <span class="stat-label">Scanned Books</span>
+            <span id="scanned-count" class="stat-value">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card">
+          <div class="stat-icon-bg indigo">📑</div>
+          <div class="stat-info">
+            <span class="stat-label">Total Pages</span>
+            <span id="total-pages-count" class="stat-value">0</span>
+          </div>
+        </div>
+
+        <div class="stat-card" title="Multi-User Cloud & Cross-Tab Real-Time Sync">
+          <div class="stat-icon-bg cyan">
+            <span class="pulse-dot"></span>
+          </div>
+          <div class="stat-info">
+            <span class="stat-label">Multi-User Sync</span>
+            <span id="sync-status-badge" class="stat-value text-emerald">Active</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- Header Quick Toolbar -->
+      <div class="nav-actions">
+        <button id="btn-add-manual-book" class="btn btn-emerald-gradient" title="Manually add a book entry with custom Accession No (e.g. 17400)">
+          <span>➕ Add Manual Book</span>
+        </button>
+        <button id="btn-smart-paste" class="btn btn-cyan-gradient" title="Paste raw text from Amazon/Flipkart/PDF to auto-extract book fields">
+          <span>📝 Paste All Details</span>
+        </button>
+        <button id="btn-sync-google-sheet" class="btn btn-indigo-gradient" title="Sync scanned shelf directly to your live Google Sheet">
+          <span>📊 Sync Google Sheet</span>
+        </button>
+        <button id="btn-sheet-settings" class="btn btn-glass-outline" title="Configure Live Google Sheet Webhook">
+          <span>⚙️ Webhook</span>
+        </button>
+        <button id="btn-export-csv" class="btn btn-glass-outline" title="Export library catalog to CSV format">
+          <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+          <span>CSV</span>
+        </button>
+        <button id="btn-export-json" class="btn btn-glass-outline" title="Export library dataset to JSON">
+          <span>JSON</span>
+        </button>
+        <button id="btn-clear-all" class="btn btn-danger-ghost" title="Clear shelf storage">Clear</button>
+      </div>
+    </header>
+
+    <!-- Main Content Container -->
+    <main class="main-container">
+      <!-- High-Tech Barcode Scanner Input Hero Section -->
+      <section class="scanner-hero glass-card-main">
+        <div class="hero-header-row">
+          <div class="hero-title-group">
+            <div class="hero-badge">
+              <span class="live-dot"></span>
+              <span>Local 500,000+ Book Dataset Active</span>
+            </div>
+            <h2>⚡ Hardware USB Barcode Scanner & ISBN Input</h2>
+            <p class="hero-desc">Scan barcodes using your USB Barcode Scanner or type any ISBN for instant 5ms institutional metadata lookup.</p>
+          </div>
+
+          <div class="hero-toggles">
+            <label class="toggle-pill" title="Keep scanning continuously without closing dialog">
+              <input type="checkbox" id="continuous-scan-toggle" checked>
+              <span class="toggle-track"></span>
+              <span class="toggle-text">⚡ Continuous Multi-Scan</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Direct Barcode Scan Form Card -->
+        <div class="scanner-input-container">
+          <form id="manual-scan-form" class="scan-input-form">
+            <div class="input-grid">
+              <div class="input-field-group">
+                <label for="manual-accession-input">Accession Number (Auto-Increments)</label>
+                <div class="input-wrapper">
+                  <span class="input-prefix">#</span>
+                  <input 
+                    type="text" 
+                    id="manual-accession-input" 
+                    class="form-control-glow font-mono" 
+                    value="17400"
+                    placeholder="17400"
+                    required
+                  >
+                </div>
+              </div>
+
+              <div class="input-field-group flex-grow">
+                <label for="manual-isbn-input">Scan Barcode with USB Scanner or Enter ISBN Code *</label>
+                <div class="input-wrapper">
+                  <span class="input-prefix">🏷️</span>
+                  <input 
+                    type="text" 
+                    id="manual-isbn-input" 
+                    class="form-control-glow font-mono large-input" 
+                    placeholder="Point USB Barcode Scanner here or enter ISBN (e.g. 9780132350884...)" 
+                    required
+                    autofocus
+                  >
+                  <button type="submit" class="btn btn-emerald-gradient btn-input-submit">
+                    ⚡ Lookup & Save
+                  </button>
+                </div>
+              </div>
+            </div>
+          </form>
+        </div>
+      </section>
+
+      <!-- Scanned Shelf Collection Section -->
+      <section class="shelf-section glass-card-main">
+        <div class="shelf-header-bar">
+          <div class="shelf-title-group">
+            <h2>RTC Library Shelf</h2>
+            <span id="shelf-counter-badge" class="shelf-counter-tag">0 Books</span>
+          </div>
+
+          <div class="shelf-controls-group">
+            <!-- Search Input -->
+            <div class="search-input-wrapper">
+              <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"/><line x1="21" y1="21" x2="16.65" y2="16.65"/></svg>
+              <input type="text" id="shelf-search-input" placeholder="Search by title, author, ISBN or Accession No...">
+            </div>
+
+            <!-- Status Filter -->
+            <select id="filter-status-select" class="form-select-custom">
+              <option value="all">All Scanned Books</option>
+              <option value="scanned">Just Scanned</option>
+              <option value="reading">Currently Reading</option>
+              <option value="completed">Completed</option>
+              <option value="wishlist">Wishlist</option>
+            </select>
+
+            <!-- Sort By -->
+            <select id="sort-select" class="form-select-custom">
+              <option value="newest">Newest Scanned</option>
+              <option value="oldest">Oldest Scanned</option>
+              <option value="accession">Accession No (#17400)</option>
+              <option value="title">Title (A-Z)</option>
+              <option value="author">Author (A-Z)</option>
+            </select>
+          </div>
+        </div>
+
+        <!-- Books Grid Container -->
+        <div id="books-grid" class="books-grid">
+          <div class="empty-shelf-state">
+            <div class="empty-icon-glow">📚</div>
+            <h3>RTC Library Shelf is Empty</h3>
+            <p>Point your handheld USB barcode scanner at a book barcode or enter an ISBN code above to add books to your library shelf.</p>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <!-- Modal Backdrop -->
+    <div id="book-modal" class="modal-backdrop hidden">
+      <div class="modal-card glass-modal">
+        <button id="modal-close-btn" class="modal-close-btn">&times;</button>
+        <div id="modal-content-container" class="modal-body"></div>
+      </div>
+    </div>
+
+    <!-- Toast Overlay -->
+    <div id="toast-container" class="toast-container"></div>
+  </div>
+
+  <script type="module" src="./src/main.js"></script>
+</body>
+</html>

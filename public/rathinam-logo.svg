@@ -1,0 +1,40 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 340 300" width="100%" height="100%">
+  <g transform="translate(10, 0)">
+    <!-- Celebrate life tagline -->
+    <text x="285" y="38" font-family="'Georgia', 'Times New Roman', serif" font-style="italic" font-size="18" font-weight="bold" fill="#1e293b" text-anchor="end">Celebrate life</text>
+
+    <!-- 3 Rings Group -->
+    <!-- Top Orange Ring -->
+    <g transform="translate(160, 88)">
+      <circle cx="0" cy="0" r="38" fill="none" stroke="#EE7202" stroke-width="14" />
+      <circle cx="0" cy="0" r="8" fill="#EE7202" />
+    </g>
+
+    <!-- Left Blue Ring -->
+    <g transform="translate(116, 158)">
+      <circle cx="0" cy="0" r="38" fill="none" stroke="#009fe3" stroke-width="14" />
+      <circle cx="0" cy="0" r="8" fill="#009fe3" />
+    </g>
+
+    <!-- Right Light-Green Ring -->
+    <g transform="translate(204, 158)">
+      <circle cx="0" cy="0" r="38" fill="none" stroke="#8cc63f" stroke-width="14" />
+      <circle cx="0" cy="0" r="8" fill="#8cc63f" />
+    </g>
+
+    <!-- RATHINaM Text -->
+    <!-- R A T H I N -->
+    <text x="18" y="268" font-family="'Trebuchet MS', 'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="52" fill="#7d287d" letter-spacing="-1">RATHIN</text>
+    
+    <!-- Orange 'a' -->
+    <g transform="translate(228, 222)">
+      <!-- Outer orange rounded lower case 'a' -->
+      <circle cx="16" cy="28" r="16" fill="none" stroke="#EE7202" stroke-width="9"/>
+      <circle cx="16" cy="28" r="4.5" fill="#EE7202"/>
+      <rect x="23" y="12" width="9" height="32" rx="4.5" fill="#EE7202"/>
+    </g>
+
+    <!-- M -->
+    <text x="272" y="268" font-family="'Trebuchet MS', 'Plus Jakarta Sans', Arial, sans-serif" font-weight="900" font-size="52" fill="#7d287d" letter-spacing="-1">M</text>
+  </g>
+</svg>
